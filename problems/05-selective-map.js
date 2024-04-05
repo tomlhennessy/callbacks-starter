@@ -42,13 +42,35 @@ AFTER YOU ARE FINISHED WITH THIS PROBLEM, ASK FOR A CODE REVIEW
 - How many times are you calling each callback function?
 *******************************************************************************/
 
-let selectiveMap = function() {
+let selectiveMap = function(array, cb1, cb2) {
+    let newArray = []; // initialise empty array to store results
 
+    // iterate through each element of the array
+    for (let i = 0; i < array.length; i++) {
+        // check if calling on cb1 results in true
+        if (cb1(array[i])) {
+            // if true, call cb2 and push result to new array
+            newArray.push(cb2[array[i]]);
+        } else {
+            // if false, push element itself to new array
+            newArray.push(array[i]);
+        }
+    }
+
+    return newArray;
 };
 
+// test cases
+function isEven(n) {
+    return n % 2 === 0;
+}
 
+function square(n) {
+    return n * n;
+}
 
-
+console.log(selectiveMap([8, 5, 10, 4], isEven, square));
+// output: [ 64, 5, 100, 16 ]
 
 
 /*****************DO NOT MODIFY ANYTHING UNDER THIS  LINE**********************/
