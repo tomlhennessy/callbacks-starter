@@ -22,7 +22,19 @@ console.log(atMost(['boat', 'arc', 'cat', 'car', 'academy'], 1, startsWithA));  
 
 *******************************************************************************/
 
-let atMost = function() {
+let atMost = function(array, max, cb) {
+    let countTrue = 0;
+    for (let element of array) {
+        if (cb(element)) {
+            countTrue++;
+            // if count of true elements exceeds max, return false
+            if (countTrue > max) {
+                return false;
+            }
+        }
+    }
+    // if count of true elements is at most the max, return true
+    return true;
 
 };
 

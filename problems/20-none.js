@@ -28,9 +28,22 @@ let result4 = none([4, -5, 7, -1], function(n) {
 console.log(result4);   // false
 *******************************************************************************/
 
-let none = function() {
+let none = function(array, cb) {
+    // iterate through each element of array
+    for (let element of array) {
+        // if cb returns true for any element, return false
+        if (cb(element)) {
+            return false;
+        }
+    }
+    return true;
 
 };
+
+let result1 = none(['ruby', 'topaz', 'opal'], function(w) {
+    return w.includes('e');
+});
+console.log(result1); // true
 
 
 

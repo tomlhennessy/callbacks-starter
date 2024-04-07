@@ -36,7 +36,15 @@ console.log(alternatingMap(['hEy', 'EVERYone', 'whats', 'uP??'], yell, whisper))
 *******************************************************************************/
 
 
-let alternatingMap = function() {
+let alternatingMap = function(array, cb1, cb2) {
+    let result = [];
+
+    for (let i = 0; i < array.length; i++) {
+        // determine which cb to use based on where index is even/odd
+        let currentCallback = i % 2 === 0 ? cb1 : cb2;
+        result.push(currentCallback(array[i]));
+    }
+    return result;
 
 };
 
