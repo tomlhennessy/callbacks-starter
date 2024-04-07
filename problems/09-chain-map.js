@@ -29,9 +29,35 @@ console.log(chainMap(4, square, half));         // 8
 console.log(chainMap(4, half, square));         // 4
 *******************************************************************************/
 
-let chainMap = function() {
+let chainMap = function(value, ...callbacks) {
+    let result = value;
+    // iterate through each cb
+    for (let cb of callbacks) {
+        // apply current cb to current result
+        result = cb(result);
+    }
 
+    // return final result after all callbacks have been applied
+    return result;
 };
+
+// example usage:
+
+let add5 = function(n) {
+    return n + 5;
+};
+
+let half = function(n) {
+    return n / 2;
+};
+
+let square = function(n) {
+    return n * n;
+};
+
+console.log(chainMap(25, add5)); // 30
+console.log(chainMap(25, add5, half)); // 15
+console.log(chainMap(25, add5, half, square)); // 225
 
 
 

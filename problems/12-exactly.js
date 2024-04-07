@@ -27,13 +27,28 @@ console.log(result4); // true
 
 *******************************************************************************/
 
-let exactly = function() {
+let exactly = function(array, number, cb) {
+    // initialise variable to count number of elements that return true
+    let countTrue = 0;
 
+    // iterate through each element of array
+    for (let i = 0; i < array.length; i++) {
+        // if cb returns true for current element, increment countTrue variable
+        if (cb(array[i])) {
+            countTrue++;
+        }
+    }
+
+    // return true if count of elements matches given number
+    return countTrue === number;
 };
 
+// example usage:
 
-
-
+let result1 = exactly([18, 5, 32 ,7, 100], 3, function (n) {
+    return n % 2 === 0;
+})
+console.log(result1); // true
 
 
 /*****************DO NOT MODIFY ANYTHING UNDER THIS  LINE**********************/

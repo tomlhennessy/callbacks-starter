@@ -23,9 +23,37 @@ let result3 = mySome(['soup', 'noodles', 'bike', 'ship'], function(ele) {
 console.log(result3);   // true
 *******************************************************************************/
 
-let mySome = function() {
+let mySome = function(array, cb) {
+    // iterate through each element of array
+    for (let i = 0; i < array.length; i++) {
+        // call cb function for current element, passing element and its index
+        // if cb returns true for any element, return true
+        if (cb(array[i], i)) {
+            return true;
+        }
+    }
 
+    // if no element returns true when passed into cb, return false
+    return false;
 };
+
+// example usage:
+
+let result1 = mySome([5, 1, 7, 9], function(ele, i) {
+    return ele === i;
+});
+console.log(result1); // true
+
+let result2 = mySome([5, 3, 7, 9], function(ele, i) {
+    return ele === i;
+});
+console.log(result2); // false
+
+let result3 = mySome(['soup', 'noodles', 'bike', 'ship'], function(ele) {
+    return ele.length === 4;
+});
+
+console.log(result3); // true
 
 
 

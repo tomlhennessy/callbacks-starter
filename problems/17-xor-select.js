@@ -31,11 +31,30 @@ console.log(
 // [ 'art', 'app', 'buttery' ]
 *******************************************************************************/
 
-let xorSelect = function() {
-
+let xorSelect = function(array, cb1, cb2) {
+    let selected = [];
+    for (let element of array) {
+      let result1 = cb1(element);
+      let result2 = cb2(element);
+      if ((result1 && !result2) || (!result1 && result2)) {
+        selected.push(element);
+      }
+    }
+    return selected;
 };
 
+// examples:
 
+let isEven = function(n) {
+  return n % 2 === 0;
+}
+
+let isPositive = function(n) {
+  return n > 0;
+}
+
+console.log(xorSelect([-2, -1, 1, 2, 3, 4], isEven, isPositive));
+// [ -2, 1, 3, ]
 
 
 

@@ -26,13 +26,29 @@ let result4 = count(['follow', 'the', 'yellow', 'brick', 'road'], function (str)
 console.log(result4); // 0
 *******************************************************************************/
 
-let count = function() {
+let count = function(array, cb) {
+    // initialise variable to count number of elements returning true
+    let countTrue = 0;
 
+    // iterate through each element of array
+    for (let i = 0; i < array.length; i++) {
+        // call cb function for current element
+        // if cb returns true, increment countTrue variable
+        if (cb(array[i])) {
+            countTrue++;
+        }
+    }
+
+    // return total count of elements that return true
+    return countTrue;
 };
 
+// example usage;
 
-
-
+let result1 = count([18, 5, 32, 7, 100], function (n) {
+    return n % 2 === 0;
+});
+console.log(result1); // 3
 
 
 /*****************DO NOT MODIFY ANYTHING UNDER THIS  LINE**********************/

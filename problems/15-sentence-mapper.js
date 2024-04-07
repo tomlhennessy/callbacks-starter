@@ -25,11 +25,37 @@ let result2 = sentenceMapper("this is pretty cool right", removeVowels);
 console.log(result2); // 'ths s prtty cl rght'
 *******************************************************************************/
 
-let sentenceMapper = function() {
-
+let sentenceMapper = function(sentence, cb) {
+    // split sentence into individual words
+    let words = sentence.split(' ');
+    // map each word using cb function
+    let transformedWords = words.map(cb);
+    // join the transformed back into new sentence
+    let newSentence = transformedWords.join(' ');
+    return newSentence;
 };
 
+// example usage:
 
+let result1 = sentenceMapper("what is the answer?", function(word) {
+    return word.toUpperCase() + "!";
+});
+console.log(result1); // 'WHAT! IS! THE! ANSWER?!'
+
+let removeVowels = function(word) {
+    let newWord = "";
+    for (let i = 0; i < word.length; i++) {
+        let char = word[i];
+        if (!"aeiou".includes(char.toLowerCase())) {
+            newWord += char;
+        }
+    }
+
+    return newWord;
+}
+
+let result2 = sentenceMapper("this is pretty cool right", removeVowels);
+console.log(result2); // 'ths s prtty cl rght'
 
 
 
